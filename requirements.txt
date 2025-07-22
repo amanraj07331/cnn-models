@@ -1,5 +1,5 @@
 tensorflow
-pandas 
+pandas
 dvc
 notebook
 numpy
@@ -14,4 +14,5 @@ types-PyYAML
 scipy
 Flask
 Flask-Cors
+gdown # Make sure this is present!
 -e .

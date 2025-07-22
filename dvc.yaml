@@ -1,0 +1,75 @@
+# dvc.yaml
+
+stages:
+  data_ingestion:
+    cmd: python src/cnn_classifier/pipeline/stage_01_data_ingestion.py
+    deps:
+      - config/config.yaml
+      - src/cnn_classifier/pipeline/stage_01_data_ingestion.py
+      - src/cnn_classifier/config/configuration.py
+      - src/cnn_classifier/components/data_ingestion.py
+      - src/cnn_classifier/entity/config_entity.py
+      - src/cnn_classifier/utils/common.py
+      - src/cnn_classifier/__init__.py
+    outs:
+      - artifacts/data_ingestion
+
+  data_transformation:
+    cmd: python src/cnn_classifier/pipeline/stage_02_data_transformation.py
+    deps:
+      - config/config.yaml
+      - params.yaml
+      - src/cnn_classifier/pipeline/stage_02_data_transformation.py
+      - src/cnn_classifier/config/configuration.py
+      - src/cnn_classifier/components/data_transformation.py
+      - src/cnn_classifier/entity/config_entity.py
+      - src/cnn_classifier/utils/common.py
+      - artifacts/data_ingestion # Depends on output of data_ingestion
+    outs:
+      - artifacts/data_transformation # This stage primarily produces logs/temp files, but marks its completion
+    # No explicit outs for transformed data itself as it's processed on-the-fly by DataLoader,
+    # but the existence of the stage implies data readiness.
+
+  prepare_base_model:
+    cmd: python src/cnn_classifier/pipeline/stage_03_prepare_base_model.py
+    deps:
+      - config/config.yaml
+      - params.yaml
+      - src/cnn_classifier/pipeline/stage_03_prepare_base_model.py
+      - src/cnn_classifier/config/configuration.py
+      - src/cnn_classifier/components/prepare_base_model.py
+      - src/cnn_classifier/entity/config_entity.py
+      - src/cnn_classifier/utils/common.py
+    outs:
+      - artifacts/prepare_base_model/base_model.pth
+      - artifacts/prepare_base_model/updated_base_model.pth
+
+  model_training:
+    cmd: python src/cnn_classifier/pipeline/stage_04_model_training.py
+    deps:
+      - config/config.yaml
+      - params.yaml
+      - src/cnn_classifier/pipeline/stage_04_model_training.py
+      - src/cnn_classifier/config/configuration.py
+      - src/cnn_classifier/components/model_training.py
+      - src/cnn_classifier/entity/config_entity.py
+      - src/cnn_classifier/utils/common.py
+      - artifacts/data_ingestion # Depends on the raw unzipped data for DataLoaders
+      - artifacts/prepare_base_model/updated_base_model.pth # Depends on the updated base model
+    outs:
+      - artifacts/model_training/model.pth # The final trained model
+
+  model_evaluation:
+    cmd: python src/cnn_classifier/pipeline/stage_05_model_evaluation.py
+    deps:
+      - config/config.yaml
+      - params.yaml
+      - src/cnn_classifier/pipeline/stage_05_model_evaluation.py
+      - src/cnn_classifier/config/configuration.py
+      - src/cnn_classifier/components/model_evaluation.py
+      - src/cnn_classifier/entity/config_entity.py
+      - src/cnn_classifier/utils/common.py
+      - artifacts/data_ingestion # Depends on the raw unzipped data for test loader
+      - artifacts/model_training/model.pth # Depends on the trained model
+    outs:
+      - artifacts/model_evaluation/evaluation_metrics.json # The evaluation metrics report
