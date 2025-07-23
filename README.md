@@ -7,21 +7,21 @@ This project implements a Convolutional Neural Network (CNN) for the classificat
 **Features** ✨
 Modular Codebase: Organized into distinct components (data ingestion, transformation, model preparation, training, evaluation, prediction) for maintainability and scalability.
 
-Data Version Control (DVC): Utilizes DVC to version datasets and model artifacts, ensuring reproducibility of experiments and traceability of results.
+**Data Version Control (DVC):** Utilizes DVC to version datasets and model artifacts, ensuring reproducibility of experiments and traceability of results.
 
-PyTorch Framework: Built using PyTorch for flexible and efficient deep learning model development.
+**PyTorch Framework:** Built using PyTorch for flexible and efficient deep learning model development.
 
-Transfer Learning: Employs a pre-trained ResNet18 model, fine-tuned for brain tumor classification.
+**Transfer Learning:** Employs a pre-trained ResNet18 model, fine-tuned for brain tumor classification.
 
-Automated Pipeline: An end-to-end ML pipeline orchestrated via main.py and defined in dvc.yaml.
+**Automated Pipeline:** An end-to-end ML pipeline orchestrated via main.py and defined in dvc.yaml.
 
-Comprehensive Evaluation: Includes detailed evaluation metrics (accuracy, precision, recall, F1-score, confusion matrix).
+**Comprehensive Evaluation:** Includes detailed evaluation metrics (accuracy, precision, recall, F1-score, confusion matrix).
 
-Web Deployment (Flask): A simple web application to upload MRI images and get real-time brain tumor predictions.
+**Web Deployment (Flask):** A simple web application to upload MRI images and get real-time brain tumor predictions.
 
-Logging: Integrated logging for monitoring pipeline execution and debugging.
+**Logging:** Integrated logging for monitoring pipeline execution and debugging.
 
-Project Structure 📁
+## Project Structure 📁
 The project adheres to a standard modular structure to keep components organized:
 
 cnn-models/
