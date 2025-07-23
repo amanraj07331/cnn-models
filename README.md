@@ -1,24 +1,10 @@
-# cnn-models
-
-
-## Workflows
-
-1.Update config.yaml
-2.Update secrets.yaml
-3.Update params.yaml
-4.Update the entity
-5.Update the configuration manager in src confg
-6.Update the components
-7.update the pipeline
-8.Update the main.py
-9.Update the dvc.yaml
-Brain Tumor Classification using CNNs (PyTorch)
-Project Overview 🧠
+#Brain Tumor Classification using CNNs (PyTorch)
+##Project Overview 🧠
 This project implements a Convolutional Neural Network (CNN) for the classification of brain tumors from MRI images. It follows a robust modular coding pattern and leverages Data Version Control (DVC) for reproducibility, ensuring that the entire machine learning pipeline, from data ingestion to model deployment, is traceable and re-executable. The trained model is then deployed via a lightweight Flask web application, allowing for easy inference through a user-friendly interface.
 
-Achieved Performance: The trained model achieved a remarkable 99.24% Test Accuracy on the unseen test dataset.
+**Achieved Performance:** The trained model achieved a remarkable 99.24% Test Accuracy on the unseen test dataset.
 
-Features ✨
+**Features** ✨
 Modular Codebase: Organized into distinct components (data ingestion, transformation, model preparation, training, evaluation, prediction) for maintainability and scalability.
 
 Data Version Control (DVC): Utilizes DVC to version datasets and model artifacts, ensuring reproducibility of experiments and traceability of results.
