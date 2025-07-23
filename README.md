@@ -123,7 +123,7 @@ Best Validation Accuracy: 99.13%
 
 Detailed classification reports and confusion matrices are saved in artifacts/model_evaluation/evaluation_metrics.json after the model_evaluation stage.
 ## Input/Output Sample
-Input image-![Project Structure](input.png)
+Input image-![input](input.png)
 
 ## Future Enhancements (Next Steps) 💡
 To take this project to the next level, consider exploring:
