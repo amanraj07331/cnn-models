@@ -26,10 +26,10 @@ The project adheres to a standard modular structure to keep components organized
 ![Project Structure](project_structure.png)
  
 
-Setup & Installation 🛠️
+## Setup & Installation 🛠️
 Follow these steps to set up the project locally:
 
-Clone the repository:
+**Clone the repository:**
 
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
