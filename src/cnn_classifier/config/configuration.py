@@ -3,12 +3,14 @@
 from cnn_classifier.constants import *
 from cnn_classifier.utils.common import read_yaml, create_directories
 from cnn_classifier.entity.config_entity import (DataIngestionConfig,
-                                                  DataTransformationConfig,
-                                                  PrepareBaseModelConfig,
-                                                  TrainingConfig,
-                                                  EvaluationConfig, # Import new dataclass
-                                                  PredictionConfig)
+                                                 DataTransformationConfig,
+                                                 PrepareBaseModelConfig,
+                                                 TrainingConfig,
+                                                 EvaluationConfig,
+                                                 PredictionConfig,
+                                                 DeploymentConfig) # NEW: Import DeploymentConfig
 from box.exceptions import BoxValueError
+from pathlib import Path # Ensure Path is imported
 
 class ConfigurationManager:
     def __init__(
@@ -94,27 +96,19 @@ class ConfigurationManager:
         )
         return training_config
 
-    def get_evaluation_config(self) -> EvaluationConfig: # NEW METHOD FOR EVALUATION
-        """
-        Retrieves model evaluation configuration from config.yaml and params.yaml.
-        Creates the root directory for evaluation artifacts.
-        Returns:
-            EvaluationConfig: Configuration object for model evaluation.
-        """
+    def get_evaluation_config(self) -> EvaluationConfig:
         eval_config = self.config.model_evaluation
         params = self.params
-        data_transformation_config = self.config.data_transformation # To get testing_data path
+        data_transformation_config = self.config.data_transformation
 
         create_directories([eval_config.root_dir])
 
-        # Define class names based on your dataset structure
-        # (alphabetical order of folder names).
         class_names = ['glioma', 'meningioma', 'notumor', 'pituitary']
 
         evaluation_config = EvaluationConfig(
             root_dir=Path(eval_config.root_dir),
             model_path=Path(eval_config.model_path),
-            testing_data=Path(data_transformation_config.testing_data), # Use path from data_transformation
+            testing_data=Path(data_transformation_config.testing_data),
             image_size=list(params.IMAGE_SIZE),
             batch_size=params.BATCH_SIZE,
             num_classes=params.NUM_CLASSES,
@@ -138,4 +132,32 @@ class ConfigurationManager:
             class_names=class_names
         )
         return prediction_config
-    
+
+    # --- NEW: Add get_deployment_config method ---
+    def get_deployment_config(self) -> DeploymentConfig:
+        """
+        Retrieves deployment configuration from config.yaml and params.yaml.
+        This includes paths for model, image handling, and server settings.
+        Returns:
+            DeploymentConfig: Configuration object for model deployment.
+        """
+        config = self.config.deployment # Assuming 'deployment' is a section in your config.yaml
+        params = self.params # Access params for image_size, num_classes
+
+        create_directories([config.root_dir]) # Create root directory for deployment artifacts
+
+        # Define class names (can be hardcoded or read from a file/config)
+        # It's good practice to keep this consistent with your training/evaluation
+        class_names = ['glioma', 'meningioma', 'notumor', 'pituitary'] # Example class names
+
+        deployment_config = DeploymentConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            image_size=list(params.IMAGE_SIZE), # Re-use from params
+            num_classes=params.NUM_CLASSES,     # Re-use from params
+            class_names=class_names,            # Define or read from config
+            upload_folder=Path(config.upload_folder),
+            host=str(config.host),
+            port=int(config.port)
+        )
+        return deployment_config

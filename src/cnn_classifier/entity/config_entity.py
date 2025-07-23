@@ -65,3 +65,14 @@ class PredictionConfig: # Renamed from previous Stage 5, now Stage 6
     image_size: list
     num_classes: int
     class_names: list
+    
+@dataclass(frozen=True)
+class DeploymentConfig: # NEW DATACLASS FOR DEPLOYMENT
+    root_dir: Path
+    model_path: Path
+    host: str
+    port: int
+    upload_folder: Path
+    image_size: list # Needed for prediction within the app
+    num_classes: int # Needed for prediction within the app
+    class_names: list # Needed for prediction within the app    

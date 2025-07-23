@@ -1,5 +1,3 @@
-# config/config.yaml
-
 artifacts_root: artifacts
 
 data_ingestion:
@@ -10,8 +8,8 @@ data_ingestion:
 
 data_transformation:
   root_dir: artifacts/data_transformation
-  training_data: artifacts/data_ingestion/archive (3)/Training # Adjust based on your unzipped structure
-  testing_data: artifacts/data_ingestion/archive (3)/Testing   # Adjust based on your unzipped structure
+  training_data: artifacts/data_ingestion/archive (3)/Training
+  testing_data: artifacts/data_ingestion/archive (3)/Testing
 
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
@@ -22,13 +20,18 @@ model_training:
   root_dir: artifacts/model_training
   trained_model_path: artifacts/model_training/model.pth
 
-model_evaluation: # NEW SECTION FOR EVALUATION
+model_evaluation:
   root_dir: artifacts/model_evaluation
-  model_path: artifacts/model_training/model.pth # Path to the trained model
-  testing_data: artifacts/data_ingestion/archive (3)/Testing # Path to the testing dataset
+  model_path: artifacts/model_training/model.pth
+  testing_data: artifacts/data_ingestion/archive (3)/Testing
 
-model_prediction: # This will become Stage 6
+model_prediction:
   root_dir: artifacts/model_prediction
-  model_path: artifacts/model_training/model.pth 
+  model_path: artifacts/model_training/model.pth
 
- 
+deployment: # This section must start at column 0
+  root_dir: artifacts/model_deployment # Indented by 2 spaces
+  model_path: artifacts/model_training/model.pth # Indented by 2 spaces
+  host: 0.0.0.0 # Indented by 2 spaces
+  port: 8080 # Indented by 2 spaces
+  upload_folder: static/uploads # Indented by 2 spaces
