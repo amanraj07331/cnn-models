@@ -1,5 +1,5 @@
-#Brain Tumor Classification using CNNs (PyTorch)
-##Project Overview 🧠
+# Brain Tumor Classification using CNNs (PyTorch)
+## Project Overview 🧠
 This project implements a Convolutional Neural Network (CNN) for the classification of brain tumors from MRI images. It follows a robust modular coding pattern and leverages Data Version Control (DVC) for reproducibility, ensuring that the entire machine learning pipeline, from data ingestion to model deployment, is traceable and re-executable. The trained model is then deployed via a lightweight Flask web application, allowing for easy inference through a user-friendly interface.
 
 **Achieved Performance:** The trained model achieved a remarkable 99.24% Test Accuracy on the unseen test dataset.
