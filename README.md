@@ -31,12 +31,12 @@ Follow these steps to set up the project locally:
 
 **Clone the repository:**
 
-git clone https://github.com/your-username/your-repo-name.git
+**git clone https://github.com/your-username/your-repo-name.git**
 cd your-repo-name
 
 (Replace your-username and your-repo-name with your actual GitHub details)
 
-Create a Conda environment (recommended):
+**Create a Conda environment (recommended):**
 
 conda create -n brain_tumour_env python=3.9 -y
 conda activate brain_tumour_env
@@ -45,7 +45,7 @@ Install Python dependencies:
 
 pip install -r requirements.txt
 
-Note: This project uses PyTorch. Depending on your system and GPU availability, you might need to install PyTorch separately. For CUDA 11.8, use:
+**Note: This project uses PyTorch. Depending on your system and GPU availability, you might need to install PyTorch separately. For CUDA 11.8, use:**
 
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
@@ -64,10 +64,10 @@ This command will download the dataset and pre-trained model artifacts that are 
 
 dvc pull
 
-How to Run the Project ▶️
+## How to Run the Project ▶️
 There are two main ways to run this project: running the full ML pipeline and running the Flask web application.
 
-A. Running the ML Pipeline (Training & Evaluation)
+**A. Running the ML Pipeline (Training & Evaluation)**
 This will execute the entire machine learning pipeline from data ingestion to model evaluation.
 
 Ensure your Conda environment is activated:
@@ -92,7 +92,7 @@ Stage 5: Model Evaluation: Evaluates the trained model on the test set and saves
 
 You will see detailed logs in your terminal and in the logs/running_logs.log file. Upon successful completion, you will find the trained model in artifacts/model_training/model.pth and evaluation metrics in artifacts/model_evaluation/evaluation_metrics.json.
 
-B. Running the Flask Web Application (Deployment)
+**B. Running the Flask Web Application (Deployment)**
 This will start a local web server where you can upload images for prediction.
 
 Ensure your Conda environment is activated:
@@ -109,21 +109,21 @@ Access the web interface:
 Open your web browser and navigate to the address provided (e.g., http://localhost:8080).
 You can then use the interface to upload an MRI image, and the application will display the predicted brain tumor type along with confidence probabilities.
 
-Configuration ⚙️
+## Configuration ⚙️
 config/config.yaml: This file contains all the static paths for artifacts and data, as well as configurations for each pipeline stage. Modify these paths if your local setup differs.
 
 params.yaml: This file stores hyperparameters for training (e.g., IMAGE_SIZE, BATCH_SIZE, LEARNING_RATE, EPOCHS, PATIENCE). Adjust these values to experiment with different training settings.
 
-Results 📊
+## Results 📊
 The model achieved impressive results during training and evaluation:
 
 Best Validation Accuracy: 99.13%
 
-Final Test Accuracy: 99.24%
+## Final Test Accuracy: 99.24%
 
 Detailed classification reports and confusion matrices are saved in artifacts/model_evaluation/evaluation_metrics.json after the model_evaluation stage.
 
-Future Enhancements (Next Steps) 💡
+## Future Enhancements (Next Steps) 💡
 To take this project to the next level, consider exploring:
 
 Advanced Model Architectures: Experiment with other state-of-the-art CNNs (e.g., ResNet50, EfficientNet) and advanced fine-tuning strategies.
@@ -142,12 +142,12 @@ Model Monitoring: Implement tools to monitor model performance in production for
 
 Improved Frontend: Enhance the web interface with a more sophisticated frontend framework (e.g., React, Vue.js).
 
-License 📄
+## License 📄
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Contact ✉️
+## Contact ✉️
 For any questions or suggestions, feel free to reach out:
 
-[Your Name/GitHub Username] - [Your Email Address]
+[AMAN RAJ] - [amanraj07331@gmail.com]
 
 Project Link:
