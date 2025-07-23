@@ -23,7 +23,7 @@ Modular Codebase: Organized into distinct components (data ingestion, transforma
 
 ## Project Structure 📁
 The project adheres to a standard modular structure to keep components organized:
-
+![Project Structure](assets/project_structure.png)
  
 
 Setup & Installation 🛠️
