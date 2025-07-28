@@ -24,7 +24,7 @@ Modular Codebase: Organized into distinct components (data ingestion, transforma
 ## Project Structure 📁
 The project adheres to a standard modular structure to keep components organized:
 ```
-cnn-models/
+Brain-tumour-Detection/
 ├── .github/                      # GitHub workflows (e.g., CI/CD)
 ├── config/
 │   └── config.yaml               # Main configuration file for paths and settings
